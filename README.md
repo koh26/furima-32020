@@ -1,15 +1,15 @@
 ## usersテーブル
 
-| Column         | Type      | Options     |
-| -------------- | --------- | ----------- |
-| nickname       | string    | null: false |
-| email          | string    | null: false |
-| password       | string    | null: false |
-| last_name      | string    | null: false |
-| first_name     | string    | null: false |
-| k_last_name    | string    | null: false |
-| k_first_name   | string    | null: false |
-| birthday       | date      | null: false |
+| Column              | Type      | Options     |
+| ------------------- | --------- | ----------- |
+| nickname            | string    | null: false |
+| email               | string    | null: false |
+| encrypted_password  | string    | null: false |
+| last_name           | string    | null: false |
+| first_name          | string    | null: false |
+| k_last_name         | string    | null: false |
+| k_first_name        | string    | null: false |
+| birthday            | date      | null: false |
 
 ### Association
 
@@ -20,7 +20,6 @@
 
 | Column        | Type            | Options                        |
 | ------------- | --------------- | ------------------------------ |
-| images        | ActiveStorage   | null: false                    |
 | title         | string          | null: false                    |
 | about         | text            | null: false                    |
 | category_id   | integer         | null: false                    |
@@ -28,7 +27,7 @@
 | fee_id        | integer         | null: false                    |
 | area_id       | integer         | null: false                    |
 | days_id       | integer         | null: false                    |
-| price_id      | integer         | null: false                    |
+| price         | integer         | null: false                    |
 | user          | references      | null: false, foreign_key: true |
 
 ### Association
@@ -53,12 +52,12 @@
 
 | Column          | Type        | Options                         |
 | --------------- | ----------- | ------------------------------- |
-| postal_code     | integer     | null: false                     |
+| postal_code     | string      | null: false                     |
 | prefecture_id   | integer     | null: false                     |
 | city            | string      | null: false                     |
-| number          | integer     | null: false                     |
-| building        | string      | null: false                     |
-| tel             | integer     | null: false                     |
+| number          | string      | null: false                     |
+| building        | string      |                                 |
+| tel             | string      | null: false                     |
 | buyer           | references  | null: false, foreign_key: true  |
 
 ### Association
