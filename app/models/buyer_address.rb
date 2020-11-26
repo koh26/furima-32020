@@ -1,6 +1,6 @@
 class BuyerAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :number, :building, :buyer_id
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :number, :building, :buyer_id, :tel
 
   with_options presence: true do
     validates :user_id
@@ -18,7 +18,7 @@ class BuyerAddress
     # バイヤーの情報を保存し、「buyer」という変数に入れている
     buyer = Buyer.create(item_id: item_id, user_id: user_id)
     # 住所の情報を保存
-    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, number: number, building: building, buyer_id: buyer.id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, number: number, tel: tel, building: building, buyer_id: buyer.id)
   end
 
 end
