@@ -38,10 +38,9 @@ class ItemsController < ApplicationController
     if @item.user.id == current_user.id
       @item.destroy
       redirect_to root_path
-      else
-        redirect_to item_path(@item.id)
+    else
+      redirect_to item_path(@item.id)
     end
-      
   end
 
   private
