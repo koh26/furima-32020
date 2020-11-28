@@ -12,6 +12,11 @@ RSpec.describe BuyerAddress, type: :model do
       it 'すべての値が正しく入力されていれば保存できる' do
         expect(@buyer_address).to be_valid
       end
+
+      it '建物名が空でも保存できる' do
+        @buyer_address.building = nil
+        expect(@buyer_address).to be_valid
+      end
     end
 
     context '購入者情報の保存がうまくいかないとき' do
@@ -62,6 +67,13 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
       end
+
+      it '電話番号は11桁以内でないと保存できないこと' do
+        @buyer_address.tel = '090617368264'
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Tel is invalid")
+      end
+
     end
   end
 end
