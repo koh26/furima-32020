@@ -3,14 +3,14 @@ class BuyersController < ApplicationController
 
   def index
     @items = Item.find(params[:item_id])
-    redirect_to root_path if current_user.id == @items.user.id
+    redirect_to root_path if current_user.id == @items.user.id || @items.buyer.present?
     @buyer_address = BuyerAddress.new
   end
 
   def create
     @items = Item.find(params[:item_id])
     @buyer_address = BuyerAddress.new(buyer_params)
-     if @buyer_address.valid?
+     if  @buyer_address.valid?
       pay_item
       @buyer_address.save
        redirect_to root_path
@@ -27,9 +27,9 @@ class BuyersController < ApplicationController
   def pay_item
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: @items.price,  # 商品の値段
-        card: buyer_params[:token],    # カードトークン
-        currency: 'jpy'                 # 通貨の種類（日本円）
+        amount: @items.price,
+        card: buyer_params[:token],
+        currency: 'jpy'
       )
     end
 
